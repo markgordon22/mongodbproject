@@ -18,7 +18,7 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
-@app.route("/")
+
 @app.route("/get_tasks")
 def get_tasks():
     tasks = list(mongo.db.tasks.find())
@@ -191,10 +191,6 @@ def delete_category(category_id):
     mongo.db.categories.remove({"_id": ObjectId(category_id)})
     flash("Category Successfully Deleted")
     return redirect(url_for("get_categories"))
-
-@app.route("/contact")
-def contact():
-    return render_template("contact.html")
 
 
 if __name__ == "__main__":
